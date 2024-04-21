@@ -12,3 +12,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform init
+        uses: terraform init
+
+      - name: Terraform plan
+        id: plan
+        if: github.event_name == 'push'
+        run: terraform plan -no-color
+
+
+
